@@ -1,0 +1,20 @@
+<form [formGroup]="signupForm" class="form-signin">
+  <div class="form-row container">
+    <div class="col-sm-12">
+      <div class="text-center">
+        <h2>Form Validation with Reactive Forms</h2>
+      </div>
+      <app-valid-input [inputType]="'text'" [control]="signupForm.get('name')" [placeHolder]="'Name'" ></app-valid-input>
+      <app-valid-input [inputType]="'email'" [control]="signupForm.get('email')" [placeHolder]="'Email'"></app-valid-input>
+      <app-valid-input [inputType]="'password'" [control]="signupForm.get('password')" [placeHolder]="'Password'"></app-valid-input>
+      <app-valid-input [inputType]="'password'" [control]="signupForm.get('confirmPassword')" [placeHolder]="'Confirm Password'" ></app-valid-input>
+      <div *ngIf="isFormError()" class="alert alert-danger" role="alert">
+          <p *ngIf="signupForm.errors.noMatchingPassword">Passwords did not match</p>
+        </div>
+      <div class="col text-center m-2">
+          <button [disabled]="signupForm.invalid" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </div>
+  {{signupForm.value | json}}
+</form>
